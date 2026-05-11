@@ -14,6 +14,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn () => view('welcome'));
 
+Route::middleware('auth')->get('/dashboard', function () {
+    $role = auth()->user()->role?->nom;
+
+    return redirect()->route(match ($role) {
+        'citoyen' => 'citizen.dashboard',
+        'architecte' => 'architect.dashboard',
+        'agent_urbanisme' => 'agent.dashboard',
+        'service_technique' => 'technical.dashboard',
+        'administrateur' => 'admin.dashboard',
+        default => 'login',
+    });
+})->name('dashboard');
+
 // ====================== AUTH ======================
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
@@ -27,7 +40,6 @@ Route::middleware(['auth', 'role:citoyen'])->group(function () {
     Route::get('/citizen/permits', [PermitController::class, 'citizenIndex'])->name('citizen.permits');
     Route::get('/citizen/permits/create', [PermitController::class, 'create'])->name('citizen.permits.create');
     Route::post('/citizen/permits', [PermitController::class, 'store'])->name('citizen.permits.store');
-    Route::get('/citizen/permits/{id}', [PermitController::class, 'show'])->name('citizen.permits.show');
 });
 
 // ====================== ARCHITECTE ======================
@@ -80,6 +92,7 @@ Route::middleware(['auth', 'role:administrateur'])->group(function () {
 
 // ====================== SHARED ======================
 Route::middleware('auth')->group(function () {
+    Route::get('/permits/{id}', [PermitController::class, 'show'])->name('permits.show');
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
     Route::post('/notifications/{id}/read', [NotificationController::class, 'markRead']);
     Route::post('/permits/{id}/documents', [DocumentController::class, 'upload']);

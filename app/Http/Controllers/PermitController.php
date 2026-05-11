@@ -121,10 +121,38 @@ class PermitController extends Controller
 
     public function show($id)
     {
-        $permit = Permit::with(['documents', 'histories.changedBy', 'status', 'permitType', 'citizen', 'technicalReviews'])
+        $permit = Permit::query()
+            ->with([
+                'documents',
+                'histories.changedBy',
+                'status',
+                'permitType',
+                'citizen',
+                'district',
+                'technicalReviews.reviewer',
+            ])
             ->findOrFail($id);
 
+        if (! $this->userCanViewPermit(Auth::user(), $permit)) {
+            abort(403, 'Accès refusé à ce dossier.');
+        }
+
         return view('permits.show', compact('permit'));
+    }
+
+    private function userCanViewPermit(?User $user, Permit $permit): bool
+    {
+        if (! $user) {
+            return false;
+        }
+
+        return match ($user->role?->nom) {
+            'administrateur', 'agent_urbanisme' => true,
+            'service_technique' => (bool) $permit->technical_review_required,
+            'citoyen' => $permit->citizen_id === $user->id,
+            'architecte' => $permit->architect_id === $user->id,
+            default => false,
+        };
     }
 
     public function validatePermit($id)
