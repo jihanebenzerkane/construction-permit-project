@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PermitController;
@@ -13,7 +12,7 @@ use App\Http\Controllers\ArchiveController;
 
 Route::get('/', fn() => view('welcome'));
 
-// ====================== AUTHENTIFICATION ======================
+// ====================== AUTH ======================
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
@@ -51,7 +50,7 @@ Route::middleware(['auth', 'role:service_technique'])->group(function () {
     Route::post('/technical/permits/{id}/review', [TechnicalReviewController::class, 'store']);
 });
 
-// ====================== ADMINISTRATEUR ======================
+// ====================== ADMIN ======================
 Route::middleware(['auth', 'role:administrateur'])->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'admin'])->name('admin.dashboard');
     Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
@@ -62,13 +61,7 @@ Route::middleware(['auth', 'role:administrateur'])->group(function () {
 
 // ====================== SHARED ======================
 Route::middleware('auth')->group(function () {
-    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications');
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
     Route::post('/notifications/{id}/read', [NotificationController::class, 'markRead']);
     Route::post('/permits/{id}/documents', [DocumentController::class, 'upload']);
 });
-=======
-
-Route::get('/', function () {
-    return view('welcome');
-});
->>>>>>> d704913ffe19b0dc7ca77cbdca09657be3a8f3a0

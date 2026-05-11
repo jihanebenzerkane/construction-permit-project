@@ -1,13 +1,10 @@
 <?php
-<<<<<<< HEAD
-=======
 
->>>>>>> d704913ffe19b0dc7ca77cbdca09657be3a8f3a0
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-<<<<<<< HEAD
+
 return new class extends Migration {
     public function up(): void {
         Schema::create('documents', function (Blueprint $table) {
@@ -23,7 +20,7 @@ return new class extends Migration {
     }
     public function down(): void { Schema::dropIfExists('documents'); }
 };
-=======
+
 return new class extends Migration
 {
     /**
@@ -45,4 +42,4 @@ return new class extends Migration
         Schema::dropIfExists('documents');
     }
 };
->>>>>>> d704913ffe19b0dc7ca77cbdca09657be3a8f3a0
+
