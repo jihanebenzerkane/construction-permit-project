@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class PermitType extends Model
 {
-<<<<<<< HEAD
     protected $fillable = ['nom', 'description'];
 
     public function permits()
@@ -14,7 +13,3 @@ class PermitType extends Model
         return $this->hasMany(Permit::class);
     }
 }
-=======
-    //
-}
->>>>>>> d704913ffe19b0dc7ca77cbdca09657be3a8f3a0

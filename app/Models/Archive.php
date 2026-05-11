@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Archive extends Model
 {
-<<<<<<< HEAD
     protected $fillable = [
         'permit_id', 'archived_by', 'archive_date', 'archive_reason',
     ];
@@ -23,7 +22,3 @@ class Archive extends Model
         return $this->belongsTo(User::class, 'archived_by');
     }
 }
-=======
-    //
-}
->>>>>>> d704913ffe19b0dc7ca77cbdca09657be3a8f3a0

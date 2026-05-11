@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Document extends Model
 {
-<<<<<<< HEAD
     protected $fillable = [
         'permit_id', 'document_type_id', 'uploaded_by',
         'file_name', 'file_path', 'uploaded_at',
@@ -29,7 +28,3 @@ class Document extends Model
         return $this->belongsTo(User::class, 'uploaded_by');
     }
 }
-=======
-    //
-}
->>>>>>> d704913ffe19b0dc7ca77cbdca09657be3a8f3a0

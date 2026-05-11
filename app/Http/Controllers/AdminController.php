@@ -2,18 +2,14 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Permit;
 use App\Models\Status;
-=======
->>>>>>> d704913ffe19b0dc7ca77cbdca09657be3a8f3a0
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-<<<<<<< HEAD
     public function users()
     {
         $users = User::with('role', 'district')->latest()->paginate(20);
@@ -44,7 +40,3 @@ class AdminController extends Controller
         return view('admin.statistics', compact('totalUsers', 'totalPermits', 'byStatus', 'highRisk', 'pending'));
     }
 }
-=======
-    //
-}
->>>>>>> d704913ffe19b0dc7ca77cbdca09657be3a8f3a0

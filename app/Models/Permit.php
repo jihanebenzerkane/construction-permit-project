@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Permit extends Model
 {
-<<<<<<< HEAD
     protected $fillable = [
         'permit_type_id', 'citizen_id', 'architect_id', 'status_id', 'district_id',
         'reference_number', 'project_title', 'project_address', 'surface', 'priority',
@@ -70,7 +69,3 @@ class Permit extends Model
         return $this->hasOne(Archive::class);
     }
 }
-=======
-    //
-}
->>>>>>> d704913ffe19b0dc7ca77cbdca09657be3a8f3a0

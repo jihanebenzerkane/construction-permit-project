@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
 use App\Models\Permit;
 use App\Models\User;
 use App\Models\Status;
@@ -62,11 +61,3 @@ class DashboardController extends Controller
         return view('dashboard.admin', compact('totalUsers', 'totalPermits', 'byStatus', 'highRisk'));
     }
 }
-=======
-use Illuminate\Http\Request;
-
-class DashboardController extends Controller
-{
-    //
-}
->>>>>>> d704913ffe19b0dc7ca77cbdca09657be3a8f3a0

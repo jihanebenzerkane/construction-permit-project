@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class PermitHistory extends Model
 {
-<<<<<<< HEAD
     protected $fillable = [
         'permit_id', 'old_status_id', 'new_status_id',
         'changed_by', 'commentaire', 'changed_at',
@@ -34,7 +33,3 @@ class PermitHistory extends Model
         return $this->belongsTo(User::class, 'changed_by');
     }
 }
-=======
-    //
-}
->>>>>>> d704913ffe19b0dc7ca77cbdca09657be3a8f3a0

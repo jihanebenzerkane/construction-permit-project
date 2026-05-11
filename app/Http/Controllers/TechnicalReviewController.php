@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
 use App\Models\Permit;
 use App\Models\TechnicalReview;
 use App\Models\Status;
@@ -47,66 +46,3 @@ class TechnicalReviewController extends Controller
         return back()->with('success', 'Révision technique enregistrée.');
     }
 }
-=======
-use App\Models\TechnicalReview;
-use Illuminate\Http\Request;
-
-class TechnicalReviewController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(TechnicalReview $technicalReview)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(TechnicalReview $technicalReview)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, TechnicalReview $technicalReview)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(TechnicalReview $technicalReview)
-    {
-        //
-    }
-}
->>>>>>> d704913ffe19b0dc7ca77cbdca09657be3a8f3a0
