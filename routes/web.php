@@ -1,16 +1,18 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\PermitController;
-use App\Http\Controllers\TechnicalReviewController;
-use App\Http\Controllers\DocumentController;
-use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArchiveController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\PermitController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\TechnicalReviewController;
+use Illuminate\Support\Facades\Route;
 
-Route::get('/', fn() => view('welcome'));
+Route::get('/', fn () => view('welcome'));
 
 // ====================== AUTH ======================
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
@@ -57,6 +59,23 @@ Route::middleware(['auth', 'role:administrateur'])->group(function () {
     Route::post('/admin/users/{id}/role', [AdminController::class, 'updateRole']);
     Route::get('/admin/statistics', [AdminController::class, 'statistics'])->name('admin.statistics');
     Route::get('/admin/archives', [ArchiveController::class, 'index'])->name('admin.archives');
+
+    Route::get('/admin/roles', [RoleController::class, 'index'])->name('admin.roles.index');
+    Route::get('/admin/roles/create', [RoleController::class, 'create'])->name('admin.roles.create');
+    Route::post('/admin/roles', [RoleController::class, 'store'])->name('admin.roles.store');
+    Route::get('/admin/roles/{role}/edit', [RoleController::class, 'edit'])->name('admin.roles.edit');
+    Route::put('/admin/roles/{role}', [RoleController::class, 'update'])->name('admin.roles.update');
+    Route::patch('/admin/roles/{role}', [RoleController::class, 'update']);
+    Route::delete('/admin/roles/{role}', [RoleController::class, 'destroy'])->name('admin.roles.destroy');
+    Route::post('/admin/roles/{role}/permissions', [RoleController::class, 'syncPermissions'])->name('admin.roles.permissions.sync');
+
+    Route::get('/admin/permissions', [PermissionController::class, 'index'])->name('admin.permissions.index');
+    Route::get('/admin/permissions/create', [PermissionController::class, 'create'])->name('admin.permissions.create');
+    Route::post('/admin/permissions', [PermissionController::class, 'store'])->name('admin.permissions.store');
+    Route::get('/admin/permissions/{permission}/edit', [PermissionController::class, 'edit'])->name('admin.permissions.edit');
+    Route::put('/admin/permissions/{permission}', [PermissionController::class, 'update'])->name('admin.permissions.update');
+    Route::patch('/admin/permissions/{permission}', [PermissionController::class, 'update']);
+    Route::delete('/admin/permissions/{permission}', [PermissionController::class, 'destroy'])->name('admin.permissions.destroy');
 });
 
 // ====================== SHARED ======================

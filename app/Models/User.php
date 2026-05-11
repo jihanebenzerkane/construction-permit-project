@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     protected $fillable = [
-        'nom', 'prenom', 'email', 'password', 'cin', 'role_id', 'district_id'
+        'nom', 'prenom', 'email', 'password', 'cin', 'role_id', 'district_id',
     ];
 
     protected $hidden = ['password', 'remember_token'];
@@ -50,6 +50,11 @@ class User extends Authenticatable
     public function archives()
     {
         return $this->hasMany(Archive::class, 'archived_by');
+    }
+
+    public function apiTokens()
+    {
+        return $this->hasMany(UserApiToken::class);
     }
 
     public function isCitoyen(): bool
